@@ -14,6 +14,7 @@ import java.util.Random;
 public class HelloController {
 
 
+
     ArrayList<Jugador> jugadoresTable;
 
     public Label welcomeText2;
@@ -70,8 +71,8 @@ public class HelloController {
     private int numeroPartidas = 1;
 
     public HelloController() {
-        jugadores[0] = new Jugador("Jugador 1", "X");
-        jugadores[1] = new Jugador("Jugador 2", "0");
+        jugadores[0] = new Jugador("Jugador 1", "( X )");
+        jugadores[1] = new Jugador("Jugador 2", "( 0 )");
         jugadoresTable = new ArrayList<>();
         jugadorActual = jugadorRandom();
 
@@ -81,6 +82,7 @@ public class HelloController {
     protected void change0() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn0.setText(jugadores[jugadorActual].getSimbolo());
+        btn0.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -89,6 +91,7 @@ public class HelloController {
     protected void change1() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn1.setText(jugadores[jugadorActual].getSimbolo());
+        btn1.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -97,6 +100,7 @@ public class HelloController {
     protected void change2() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn2.setText(jugadores[jugadorActual].getSimbolo());
+        btn2.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -105,6 +109,7 @@ public class HelloController {
     protected void change3() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn3.setText(jugadores[jugadorActual].getSimbolo());
+        btn3.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -113,6 +118,7 @@ public class HelloController {
     protected void change4() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn4.setText(jugadores[jugadorActual].getSimbolo());
+        btn4.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -121,6 +127,7 @@ public class HelloController {
     protected void change5() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn5.setText(jugadores[jugadorActual].getSimbolo());
+        btn5.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -129,6 +136,7 @@ public class HelloController {
     protected void change6() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn6.setText(jugadores[jugadorActual].getSimbolo());
+        btn6.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -137,6 +145,7 @@ public class HelloController {
     protected void chang7() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn7.setText(jugadores[jugadorActual].getSimbolo());
+        btn7.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -145,6 +154,7 @@ public class HelloController {
     protected void change8() {
         // Aquí ya tienes inicializados los jugadores cuando se ejecuta el método
         btn8.setText(jugadores[jugadorActual].getSimbolo());
+        btn8.setDisable(true);
         buscarGanador();
         cambiarTurno();
     }
@@ -205,6 +215,7 @@ public class HelloController {
 
     boolean compararElementos() {
         if (btn0.getText().equals(btn1.getText()) && btn0.getText().equals(btn2.getText()) && !btn0.getText().isEmpty()) {
+
             return true;
 
         }
@@ -251,6 +262,11 @@ public class HelloController {
         desactivarJuego();
         txtJugador1.setText("Jugador 1");
         txtJugador2.setText("Jugador 2");
+        btnIniciar.getStyleClass().addAll("btn", "btn-primary");
+        btnAnular.getStyleClass().addAll("btn", "btn-danger");
+
+
+
 
 
         // Asignar la lista observable al TableView
