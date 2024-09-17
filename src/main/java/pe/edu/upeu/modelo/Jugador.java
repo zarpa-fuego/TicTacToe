@@ -5,9 +5,18 @@ public class Jugador {
     private String nombre;
     private String simbolo;
 
+    // Se llama constructor, para contruir objetos
     public Jugador(String nombre, String simbolo) {
         this.nombre = nombre;
         this.simbolo = simbolo;
+    }
+
+    public Jugador(String nombre) {
+        this.nombre = nombre;
+        this.simbolo = "X";
+    }
+    public Jugador( ) {
+
     }
 
     public String getNombre() {

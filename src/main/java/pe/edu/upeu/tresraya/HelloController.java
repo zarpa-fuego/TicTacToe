@@ -7,20 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pe.edu.upeu.modelo.Juego;
 import pe.edu.upeu.modelo.Jugador;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 public class HelloController {
-
-
-
-    ArrayList<Jugador> jugadoresTable;
-
-    public Label welcomeText2;
-    @FXML
-    private Label welcomeText;
-
     @FXML
     private Button btn0;
     @FXML
@@ -51,6 +40,7 @@ public class HelloController {
     private TextField txtJugador2;
 
     private Jugador[] jugadores = new Jugador[2];
+
     private int jugadorActual; // Para alternar turnos
     @FXML
     private TableColumn<Jugador, String> numeroPartida;
@@ -66,16 +56,13 @@ public class HelloController {
     private TableColumn<Jugador, String> estado;
     @FXML
     private TableView<Juego> tableView;
-    private ObservableList<Juego> operacionData = FXCollections.observableArrayList();
+    private ObservableList<Juego> listaJuegos = FXCollections.observableArrayList();
     int contador = 0;
     private int numeroPartidas = 1;
 
+    // Metodo Constructor
     public HelloController() {
-        jugadores[0] = new Jugador("Jugador 1", "( X )");
-        jugadores[1] = new Jugador("Jugador 2", "( 0 )");
-        jugadoresTable = new ArrayList<>();
         jugadorActual = jugadorRandom();
-
     }
 
     @FXML
@@ -195,13 +182,16 @@ public class HelloController {
                 editarUltimoElemento(jugadores[jugadorActual].getNombre(), "Terminado", 1);
                 iniciar();
             }
+            else{
+                contador = contador + 1;
+
+            }
         }
 
-        contador = contador + 1;
+
     }
 
     void limpiarJuego() {
-        contador = -1;
         btn0.setText("");
         btn1.setText("");
         btn2.setText("");
@@ -270,7 +260,7 @@ public class HelloController {
 
 
         // Asignar la lista observable al TableView
-        tableView.setItems(operacionData);
+        tableView.setItems(listaJuegos);
         lblTurno.setText(jugadores[jugadorActual].getNombre() + " " + jugadores[jugadorActual].getSimbolo());
     }
 
@@ -318,7 +308,12 @@ public class HelloController {
     @FXML
     public void iniciar() {
         activarJuego();
-        jugadores[0] = new Jugador(txtJugador1.getText(), "X");
+        contador=0;
+        Jugador j1=new Jugador();
+        j1.setNombre(txtJugador1.getText());
+        j1.setSimbolo("X");
+
+        jugadores[0] = j1;
         jugadores[1] = new Jugador(txtJugador2.getText(), "O");
         agregar("", "Jugando", 0);
         limpiarJuego();
@@ -343,13 +338,13 @@ public class HelloController {
         juego.setPuntuacion(puntuacion);
         juego.setEstado(estado);
 
-        operacionData.add(juego);
+        listaJuegos.add(juego);
 
     }
 
     public void editarUltimoElemento(String nombreGanador, String estado, int nuevoPuntaje) {
-        if (!operacionData.isEmpty()) {
-            Juego ultimoJuego = operacionData.get(operacionData.size() - 1);  // Obtener el último elemento
+        if (!listaJuegos.isEmpty()) {
+            Juego ultimoJuego = listaJuegos.get(listaJuegos.size() - 1);  // Obtener el último elemento
             ultimoJuego.setNombreGanador(nombreGanador);  // Editar el nombre (suponiendo que la clase Juego tiene este método)
             ultimoJuego.setPuntuacion(nuevoPuntaje);  // Editar el puntaje (si existe este método)
             ultimoJuego.setEstado(estado);
