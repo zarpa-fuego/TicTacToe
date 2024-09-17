@@ -261,7 +261,6 @@ public class HelloController {
 
         // Asignar la lista observable al TableView
         tableView.setItems(listaJuegos);
-        lblTurno.setText(jugadores[jugadorActual].getNombre() + " " + jugadores[jugadorActual].getSimbolo());
     }
 
     public void activarJuego() {
@@ -318,6 +317,7 @@ public class HelloController {
         agregar("", "Jugando", 0);
         limpiarJuego();
         numeroPartidas = numeroPartidas + 1;
+        lblTurno.setText(jugadores[jugadorActual].getNombre() + " " + jugadores[jugadorActual].getSimbolo());
 
     }
 
